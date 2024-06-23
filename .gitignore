@@ -1,0 +1,20 @@
+# Python/Django specific
+*.pyc
+__pycache__/
+
+# Node.js specific
+node_modules/
+npm-debug.log
+
+# Environment variables
+myvenv
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+
+# Ignore compiled Python files
+*.pyc
+
+# Ignore compiled assets or build artifacts
+/staticfiles/
