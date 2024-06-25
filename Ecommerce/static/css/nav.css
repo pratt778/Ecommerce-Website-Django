@@ -1,0 +1,42 @@
+li{
+    list-style: none;
+
+}
+*{
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+body{
+    height: 100%;
+}
+html{
+    height: 100vh;
+}
+#sidebarMenu{
+    position:fixed;
+    left: 0;
+    width: 270px;
+    height: 100%;
+}
+.ecom-container{
+    margin-top: 70px;
+    margin-left: 280px;
+    height: 100%;
+}
+.cat-links{
+    color: white;
+    font-weight: 600;
+}
+.row{
+    margin: 0;
+}
+.navbar{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+.products img{
+    width: 278px;
+}
