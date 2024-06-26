@@ -39,4 +39,26 @@ html{
 }
 .products img{
     width: 278px;
+    height: 300px;
+}
+.detailcontainer{
+
+}
+.img-detail{
+    width: 50%;
+    height: 320px;
+}
+.img-detail img{
+    min-width: 350px;
+    max-width: 400px;
+}
+.mylinks{
+    display: flex;
+    padding: 0;
+}
+.link-item{
+    color: gray;
+}
+.top{
+    height: fit-content;
 }

@@ -13,69 +13,27 @@
         {% include "sidebar.html" %}
         <main class="ecom-container">
             <div class="d-flex gap-3 mt-3 bg-danger p-2">
-                <li class="cat-list"><a href="" class="cat-links">Books</a></li>
-                <li class="cat-list"><a href="" class="cat-links">Pens</a></li>
-                <li class="cat-list"><a href="" class="cat-links">Bags</a></li>
-                <li class="cat-list"><a href="" class="cat-links">Pencils</a></li>
-                <li class="cat-list"><a href="" class="cat-links">Erasers</a></li>
+                {% for cat in category %}
+                
+                <li class="cat-list"><a href="" class="cat-links">{{cat.name}}</a></li>
+                {% endfor %}
             </div>
             <section class="product-container">
                 <h3 class="mt-3">Products</h3>
                 <div class="product-list  w-100 d-flex flex-wrap gap-3">
+                    {% for pro in product %}
+                    
                     <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class="rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
+                        <a href="{% url "productinfo" pid=pro.product_id %}">
+
+                            <img src="{{pro.product_image}}"  alt="" width="" class="rounded">
+                        </a>
+                        <p class="text-start px-3 text-black"> <span class="fw-bold">{{pro.product_rating}}</span>  <i class="fa-solid fa-star text-warning"></i></i></p> 
+                        <p class="text-start px-3 fw-bold ">{{pro.product_title | truncatewords:3}}</p>
+                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">${{pro.product_price}}</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
                     </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class="rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
-                    <div class="products  shadow-lg p-3 bg-white rounded flex flex-column">
-                        <img src=" {{ MEDIA_URL }}nike-1.jpg" alt="" width="" class=" rounded">
-                        <p class="text-start px-3"><i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i> <i class="fa-solid fa-star text-warning"></i></p> 
-                        <p class="text-start px-3 fw-bold ">Nike running shoes</p>
-                        <p class="d-flex justify-content-between px-3 fw-bold"><span class="">$230</span><span class="bg-danger rounded p-2"><i class="fa-solid fa-cart-shopping text-white"></i></span></p>
-                    </div>
+                    
+                    {% endfor %}
                   
                 </div>
             </section>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/bootstrap/static/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <title>Document</title>
+</head>
+<body>
+    {% include "navbar.html" %}
+    {% include "sidebar.html" %}
+    <main class="ecom-container detailcontainer d-flex flex-column gap-5">
+        <div class="top d-flex">
+
+            <div class="img-detail p-2">
+                <img src="{{product.product_image}}" class="h-100" alt="product-image">
+            </div>
+            <div class="right-title p-3 d-flex flex-column gap-3">
+                <ol class="mylinks h5">
+                    <li><a href="{% url "home" %}" class="link-item">Home /</a></li>
+                    <li><a href="" class="link-item">&nbsp;Products / </a></li>
+                    <li><a href="{% url "productinfo" pid=product.product_id %}" class="link-item">&nbsp;{{product.product_title | truncatewords:2}}</a></li>
+                </ol>
+                <h3>{{product.product_title}}</h3>
+                <p class="h3 mt-3"><s>${{price | floatformat:2}}</s>  ${{product.product_price}}</p>
+                <p class="h3 mt-3">{{product.product_rating}} <span><i class="fas fa-star text-warning"></i></span></p>
+                <p class="h4">Category: {{product.Category.name}}</p>
+                <p class="h4">Stock: {{product.product_count}}</p>
+                <button class="btn btn-success w-25"><i class="fas fa-cart-shopping"></i></button>
+            </div>
+        </div>
+        <div class="desc mt-2">
+            <h2>Description</h2>
+            <p class="h5 p-3">
+                {{product.product_description}}
+            </p>
+        </div>
+    </main>
+</body>
+</html>
