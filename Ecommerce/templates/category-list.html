@@ -1,0 +1,6 @@
+<div class="d-flex gap-3 mt-3 bg-danger p-2">
+    {% for cat in category %}
+    
+    <li class="cat-list"><a href=" {% url "category" cat.id %} " id="cat-list" class="cat-links {% if cid == cat.id %} active-cat{% endif %}">{{cat.name | capfirst}}</a></li>
+    {% endfor %}
+</div>

@@ -5,6 +5,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import requests
 from .models import ProductList,Category
+from django.views.generic import ListView
 import json
 # Create your views here.
 @method_decorator(login_required(login_url='login'),name='dispatch')
@@ -53,3 +54,28 @@ class productinfo(View):
         price = myproduct.product_price
         data['price']=float(price-15)
         return render(request,'product-detail.html',data)
+    
+class categoryinfo(View):
+    def get(self,request,cid):
+        data={}
+        mycat = Category.objects.get(id = cid)
+        myproducts = ProductList.objects.filter(Category=mycat)
+        data['product']=myproducts
+        cate = Category.objects.all()
+        data['category']=cate
+        data['cid']=cid
+        return render(request,'category-detail.html',data)
+    
+class search(ListView):
+    model=ProductList
+    template_name="product-list.html"
+    context_object_name='product'
+
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        if query:
+            return ProductList.objects.filter(product_title__icontains=query)
+        else:
+            return ProductList.objects.none()
+        
+    

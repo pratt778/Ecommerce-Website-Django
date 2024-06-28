@@ -9,16 +9,15 @@
     <title>Document</title>
 </head>
 <body>
-        {% include "navbar.html" %}
-        {% include "sidebar.html" %}
-        <main class="ecom-container" id="main-section">
-            {% if category %}
-            {% include "category-list.html" %}
-            {% endif %}
-            <div id="main-cont">
-                {% include "product-list.html" %}
-            </div>
-        </main>
+    {% include "navbar.html" %}
+    {% include "sidebar.html" %}
+    <main class="ecom-container" id="main-section">
+        {% if category%}
+        {% include "category-list.html" %}
+        {% endif %}
+        <div id="main-cont">
+            {% include "product-list.html" %}
+        </div>
+    </main>
 </body>
-
 </html>

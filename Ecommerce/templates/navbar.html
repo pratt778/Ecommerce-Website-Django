@@ -41,15 +41,16 @@
         <!-- Left links -->
       </div>
       <!-- Collapsible wrapper -->
-      <form class="d-flex input-group w-auto mx-5" >
+      <form class="d-flex input-group w-auto mx-5" id="submitform" method="get" >
         <input
           type="search"
           class="form-control rounded"
           placeholder="Search"
           aria-label="Search"
+          name="query"
           aria-describedby="search-addon"
         />
-        <button class="btn">
+        <button class="btn" type="submit">
 
           <i class="fas fa-search"></i>
         </button>
@@ -62,3 +63,26 @@
     <!-- Container wrapper -->
   </nav>
   <!-- Navbar -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+   $(document).ready(function(){
+     $('#submitform').submit(function(e){
+       e.preventDefault();
+       console.log('Form submission prevented'); 
+       $.ajax({
+         type:'GET',
+         url:'{% url "search" %}',
+         data: $(this).serialize(),  // Serialize the form data
+         success: function(response) {
+         // Handle success - for example, update the HTML of a div with the response
+        $('#main-cont').html(response)
+       },
+         error: function(xhr, status, error) {
+         // Handle error - for example, display an error message
+         console.error('AJAX request failed:', status, error);
+         alert('An error occurred. Please try again.');
+       }
+       })
+     })
+   })
+  </script>

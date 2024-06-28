@@ -62,3 +62,6 @@ html{
 .top{
     height: fit-content;
 }
+.active-cat{
+    color: black !important;
+}
