@@ -26,4 +26,6 @@ urlpatterns = [
     path('product-info/<pid>',productinfo.as_view(),name="productinfo"),
     path('category/<int:cid>',categoryinfo.as_view(),name="category"),
     path('search/',search.as_view(),name='search'),
+    path('ratings/',ratings.as_view(),name="ratings"),
+    path('userdetails/',userdetails.as_view(),name="userdetail"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

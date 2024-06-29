@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/static/bootstrap/static/css/bootstrap.css">
+    <title>MeroPasal | Login</title>
 </head>
-<body>
+<body class="p-3">
     <h1>Log In</h1>
-    <form method="post">
+    <form method="post" class="d-flex flex-column gap-2" >
         {% csrf_token %}
         {{form}}
-        <button>login</button>
+        <button class="btn btn-success w-25">login</button>
     </form>
 </body>
 </html>

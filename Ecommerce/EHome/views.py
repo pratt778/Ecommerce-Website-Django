@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 import requests
 from .models import ProductList,Category
 from django.views.generic import ListView
+from django.http import HttpResponse
+from django.contrib.auth.models import User
 import json
 # Create your views here.
 @method_decorator(login_required(login_url='login'),name='dispatch')
@@ -36,11 +38,15 @@ class home(View):
 
     def get(self,request):
         data={}
-        getvalues = self.fetch(request)
-        if getvalues:
-            self.save_products(getvalues)
+        # getvalues = self.fetch(request)
+        # if getvalues:
+        #     self.save_products(getvalues)
         myproduct = ProductList.objects.all()
         mycategory = Category.objects.all()
+        products = ProductList.objects.all()
+        # for pro in products:
+        #     print(pro.product_rating)
+            
         data['product']=myproduct
         data['category']=mycategory
         return render(request,'index.html',data)
@@ -79,3 +85,17 @@ class search(ListView):
             return ProductList.objects.none()
         
     
+class ratings(View):
+    def get(self,request):
+        data={}
+        myrating = request.GET.get('star')
+        myproduct=ProductList.objects.filter(product_rating__icontains=round(float(myrating)))
+        data['product']=myproduct
+        return render(request,'product-list.html',data)
+
+class userdetails(View):
+    def get(self,request):
+        data={}
+        myuser=User.objects.get(username=request.user)
+        data['user']=myuser
+        return render(request,'user-details.html',data)

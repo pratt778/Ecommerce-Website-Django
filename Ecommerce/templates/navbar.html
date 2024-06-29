@@ -29,13 +29,16 @@
         <!-- Left links -->
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">MeroPasal</a>
+            <a class="nav-link" href="">MeroPasal</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Cart</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">User</a>
+            <a class="nav-link {% if request.path == '/userdetails/' %}text-primary{% endif %}" href="{% url "userdetail" %}">User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.path == '/' %}text-primary{% endif %}" href="{% url "home" %}">Home</a>
           </li>
         </ul>
         <!-- Left links -->
@@ -63,9 +66,9 @@
     <!-- Container wrapper -->
   </nav>
   <!-- Navbar -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-   $(document).ready(function(){
+    $(document).ready(function(){
      $('#submitform').submit(function(e){
        e.preventDefault();
        console.log('Form submission prevented'); 
@@ -84,5 +87,5 @@
        }
        })
      })
-   })
+   }) 
   </script>
