@@ -28,4 +28,6 @@ urlpatterns = [
     path('search/',search.as_view(),name='search'),
     path('ratings/',ratings.as_view(),name="ratings"),
     path('userdetails/',userdetails.as_view(),name="userdetail"),
+    path('mycart/<pid>',myCart.as_view(),name="mycart"),
+    path('sort/<str:so>',mysort.as_view(),name="sort"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

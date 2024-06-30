@@ -63,3 +63,19 @@ html{
 .active-cat{
     color: black !important;
 }
+.radio-rating{
+    display: none;
+
+}
+.myradio{
+    
+    
+    cursor: pointer;
+}
+.myradio:hover i{
+    color: orange !important;
+}
+
+.radio-rating:checked .myradio {
+    
+}

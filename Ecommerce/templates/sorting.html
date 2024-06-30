@@ -1,0 +1,5 @@
+<select name="sort" id="mysort" class="form-control w-25">
+    <option value="" hidden selected>Sort By:</option>
+    <option value="asc"class="p-2"{% if vals == 'asc' %}selected{% endif %}>Price Low to High</option>
+    <option value="desc" {% if vals == 'desc' %}selected{% endif %}>Price High to Low</option>
+</select>

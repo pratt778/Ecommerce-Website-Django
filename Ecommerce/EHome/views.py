@@ -89,7 +89,7 @@ class ratings(View):
     def get(self,request):
         data={}
         myrating = request.GET.get('star')
-        myproduct=ProductList.objects.filter(product_rating__icontains=round(float(myrating)))
+        myproduct=ProductList.objects.filter(product_rating__gte=(float(myrating))).order_by('product_rating')
         data['product']=myproduct
         return render(request,'product-list.html',data)
 
@@ -99,3 +99,18 @@ class userdetails(View):
         myuser=User.objects.get(username=request.user)
         data['user']=myuser
         return render(request,'user-details.html',data)
+    
+class myCart(View):
+    def get(self,request,pid):
+        return render(request,"mycart.html")
+    
+class mysort(View):
+    def get(self,request,so):
+        data={}
+        if so=='asc':
+            myproduct=ProductList.objects.all().order_by('product_price')
+        elif so=='desc':
+            myproduct=ProductList.objects.all().order_by('-product_price')
+        data['product']=myproduct
+        data['vals']=so
+        return render(request,"product-list.html",data)
