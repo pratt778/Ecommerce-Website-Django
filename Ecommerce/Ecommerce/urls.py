@@ -30,4 +30,5 @@ urlpatterns = [
     path('userdetails/',userdetails.as_view(),name="userdetail"),
     path('mycart/<pid>',myCart.as_view(),name="mycart"),
     path('sort/<str:so>',mysort.as_view(),name="sort"),
+    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

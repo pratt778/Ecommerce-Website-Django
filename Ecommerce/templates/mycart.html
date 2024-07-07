@@ -13,8 +13,35 @@
 
 <body>
     {% include "navbar.html" %}
-    <main class="ecom-container" id="main-section">
-        
+    <main class="ecom-container mx-0 p-3" id="main-section">
+        <h1>Shopping Bag</h1>
+        <h4>{{myinfo|length}} items is in your Cart.</h4>
+        <div class="cart_cont shadow-md bg-white p-3 ">
+            <table cellpadding=30>
+                <tr class="shadow-sm">
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+                {% for myinfo in myinfo %}
+                
+                <tr class="shadow-lg">
+                    <td class="d-flex gap-3">
+                        <img src="{{myinfo.product.product_image}}"alt=""width="100">
+                        <div class="d-flex flex-column gap-3">
+                            <span class="text-secondary">{{myinfo.product.Category.name}}</span>
+                            <span>{{myinfo.product.product_title | truncatewords:2}}</span>
+                        </div>
+                    </td>
+                    <td>{{myinfo.product.product_price}}</td>
+                    <td>{{myinfo.quantity}}</td>
+                    <td>{{myinfo.total_price}}</td>
+                </tr>
+                {% endfor %}
+             
+            </table>
+        </div>
     </main>
 </body>
 

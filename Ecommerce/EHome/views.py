@@ -4,7 +4,7 @@ from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 import requests
-from .models import ProductList,Category
+from .models import ProductList,Category,AddtoCart
 from django.views.generic import ListView
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -102,7 +102,18 @@ class userdetails(View):
     
 class myCart(View):
     def get(self,request,pid):
-        return render(request,"mycart.html")
+        data={}
+        myprod = ProductList.objects.get(id=pid)
+        myuser = request.user
+        mycart,created = AddtoCart.objects.get_or_create(product=myprod,user=myuser)
+        if not created:
+            # mycart.quantity+=1
+            mycart.save()
+        else:
+            mycart.save()
+        thiscart = AddtoCart.objects.filter(user=myuser)
+        data['myinfo']=thiscart
+        return render(request,"mycart.html",data)
     
 class mysort(View):
     def get(self,request,so):
