@@ -28,7 +28,7 @@
                 <p class="h3 mt-3">{{product.product_rating}} <span><i class="fas fa-star text-warning"></i></span></p>
                 <p class="h4">Category: {{product.Category.name}}</p>
                 <p class="h4">Stock: {{product.product_count}}</p>
-                <button class="btn btn-success w-25"><i class="fas fa-cart-shopping"></i></button>
+                <button class="btn btn-success w-25"><a href="{% url "mycart" product.product_id %}"><i class="fas fa-cart-shopping"></i></a></button>
             </div>
         </div>
         

@@ -35,8 +35,10 @@
                         </div>
                     </td>
                     <td>{{myinfo.product.product_price}}</td>
-                    <td>{{myinfo.quantity}}</td>
-                    <td>{{myinfo.total_price}}</td>
+                    <td> <button data-action="decrease" class="quan-btn" data-id="{{myinfo.id}}">-</button> 
+                      <span id="myquantity-{{myinfo.id}}"> {{myinfo.quantity}} </span> 
+                        <button data-action="increase" class="quan-btn" data-id="{{myinfo.id}}">+</button></td>
+                    <td><span id="tprice-{{myinfo.id}}">{{myinfo.total_price | floatformat:2}}</span></td>
                 </tr>
                 {% endfor %}
              
@@ -44,5 +46,28 @@
         </div>
     </main>
 </body>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+        $('.quan-btn').click(function(){
+            var action = $(this).data('action')
+            console.log(action)
+            var id = $(this).data('id')
+            console.log(id)
+            $.ajax({
+                type:'POST',
+                url:"{% url 'update_quantity' %}",
+                data:{
+                    'id':id,
+                    'action':action,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success:function(response){
+                    $('#myquantity-'+id).text(response.quantity)
+                    $('#tprice-'+id).text(response.tprice)
+                }
+            })
+        })
+    })
+</script>
 </html>

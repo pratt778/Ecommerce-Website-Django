@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 import requests
 from .models import ProductList,Category,AddtoCart
 from django.views.generic import ListView
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.models import User
 import json
 # Create your views here.
@@ -101,16 +101,17 @@ class userdetails(View):
         return render(request,'user-details.html',data)
     
 class myCart(View):
-    def get(self,request,pid):
+    def get(self,request,pid=None):
         data={}
-        myprod = ProductList.objects.get(id=pid)
         myuser = request.user
-        mycart,created = AddtoCart.objects.get_or_create(product=myprod,user=myuser)
-        if not created:
+        if pid:
+            myprod = ProductList.objects.get(id=pid) 
+            mycart,created = AddtoCart.objects.get_or_create(product=myprod,user=myuser)
+            if not created:
             # mycart.quantity+=1
-            mycart.save()
-        else:
-            mycart.save()
+                mycart.save()
+            else:
+                mycart.save()
         thiscart = AddtoCart.objects.filter(user=myuser)
         data['myinfo']=thiscart
         return render(request,"mycart.html",data)
@@ -125,3 +126,21 @@ class mysort(View):
         data['product']=myproduct
         data['vals']=so
         return render(request,"product-list.html",data)
+    
+class udquality(View):
+    def post(self,request):
+        id = request.POST.get('id')
+        action = request.POST.get('action')
+        print(f"id is {id} and action is {action}")
+        myprod = AddtoCart.objects.get(id=id)
+        if action=="increase":
+            myprod.quantity+=1
+            print(f"new quantity is {myprod.quantity}")
+        elif action=="decrease" and myprod.quantity>1:
+            myprod.quantity-=1
+            print(f"new quantity is {myprod.quantity}")
+        myprod.save()
+        print(f"saved quantity is {myprod.quantity}")
+        return JsonResponse({'success':True,'quantity':myprod.quantity,'tprice':myprod.total_price})
+      
+
